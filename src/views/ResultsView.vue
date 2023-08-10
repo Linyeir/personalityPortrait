@@ -1,16 +1,30 @@
 <template lang="">
     <div>
         Resultsview
+        {{this.answers}}
     </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
   // type inference enabled
-  props: {},
+  props: ['answers'],
+  methods: {
+    calculateResults() {
+      // Use this.answers to calculate and display the quiz results
+    }
+  },
+  created() {
+    this.calculateResults();
+  },
   data() {return{}},
-  mounted() {}
+  mounted() {},
+  setup() {
+    const route = useRoute();
+    const answers = ref(JSON.parse(route.params.answers as string));
+  }
 })
 </script>
 <style lang="">
