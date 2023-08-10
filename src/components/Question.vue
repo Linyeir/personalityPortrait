@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="">{{ $t(questionKey) }}</h2>
-    <div class="flex w-full flex-row gap-4 justify-center mt-8">
+    <div class="mt-8 flex w-full flex-row justify-center gap-4">
       <button
         @click="selectAnswer(0)"
         class="basis-1/4 items-center rounded-md bg-slate-100 p-2 transition duration-200 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-900"

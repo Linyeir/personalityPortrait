@@ -1,15 +1,15 @@
 import { createApp } from 'vue'
-import App from './App.vue'
-import './assets/main.css'
-
+import { createPinia } from 'pinia'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { createI18n } from 'vue-i18n'
+
+import App from './App.vue'
 import en from './locales/en.json'
 import de from './locales/de.json'
-
-import { createRouter, createWebHashHistory } from 'vue-router'
 import IntroView from './views/IntroView.vue'
 import QuizView from './views/QuizView.vue'
 import ResultsView from './views/ResultsView.vue'
+import './assets/main.css'
 
 const i18n = createI18n({
   locale: 'de',
@@ -34,4 +34,6 @@ const router = createRouter({
   routes: routes
 })
 
-createApp(App).use(i18n).use(router).mount('#app')
+const pinia = createPinia()
+
+createApp(App).use(i18n).use(router).use(pinia).mount('#app')
