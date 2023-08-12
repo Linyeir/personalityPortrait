@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { createI18n } from 'vue-i18n'
 
@@ -26,7 +27,7 @@ const i18n = createI18n({
 const routes = [
   { path: '/', component: IntroView },
   { path: '/quiz', component: QuizView },
-  { path: '/results', component: ResultsView, props: true }
+  { path: '/results', component: ResultsView}
 ]
 
 const router = createRouter({
@@ -35,5 +36,6 @@ const router = createRouter({
 })
 
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
 createApp(App).use(i18n).use(router).use(pinia).mount('#app')

@@ -1,25 +1,25 @@
 <template lang="">
-  <div class="flex h-5/6 flex-col items-center justify-between">
-    <div
-      class="mt-20 w-3/4 max-w-4xl overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800"
-    >
-      <Question
-        v-if="currentQuestionKey"
-        :questionKey="currentQuestionKey"
-        @update="storeAnswerAndGoToNext"
-      />
-      <div v-if="allQuestionsAnswered">
-        <router-link
-          to="/results"
-          active-class="bg-slate-100 dark:bg-slate-700"
-          class="my-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
-        >
-          <i class="bi bi-check px-3"></i>{{ $t('submitQuiz') }}</router-link
-        >
+  <div class="-mt-12 flex h-screen flex-col items-center justify-center gap-4">
+    <div class="h-80 w-3/4 max-w-4xl">
+      <div class="overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800">
+        <Question
+          v-if="currentQuestionKey"
+          :questionKey="currentQuestionKey"
+          @update="storeAnswerAndGoToNext"
+        />
+        <div v-if="allQuestionsAnswered">
+          <router-link
+            to="/results"
+            active-class="bg-slate-100 dark:bg-slate-700"
+            class="my-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
+          >
+            <i class="bi bi-check px-3"></i>{{ $t('submitQuiz') }}</router-link
+          >
+        </div>
       </div>
     </div>
 
-    <div class="w-3/4">
+    <div class="mt-0 w-1/2">
       <progress-bar :percentage="(answersSum * 100) / totalQuestions" class="mx-2 mb-2" />
     </div>
   </div>
@@ -56,12 +56,11 @@ export default defineComponent({
       quizStore.answers[questionKey] = answer // **Update answers in the store**
       currentQuestionIndex.value += 1
 
-      if (currentQuestionIndex.value < questionKeys.value.length) {
+      if (currentQuestionIndex.value < totalQuestions.value) {
         currentQuestionKey.value = questionKeys.value[currentQuestionIndex.value]
       } else {
         currentQuestionKey.value = null
       }
-      console.log(quizStore.answers) // **Log answers from the store**
     }
 
     return {

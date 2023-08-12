@@ -1,6 +1,6 @@
 {
   "name": "personalityportrait",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -16,6 +16,7 @@
     "@vueuse/core": "^10.2.0",
     "bootstrap-icons": "^1.10.5",
     "pinia": "^2.1.6",
+    "pinia-plugin-persistedstate": "^3.2.0",
     "vue": "^3.3.4",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.2.2"

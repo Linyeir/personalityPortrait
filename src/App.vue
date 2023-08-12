@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import sidebarMenu from './components/SidebarMenu.vue'
+import { useThemeStore } from './stores/ThemeStore'
 
 import { useToggle } from '@vueuse/core'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -8,6 +9,10 @@ import { ref } from 'vue'
 const isLargeScreen = window.innerWidth >= 1024
 const showSidebar = ref(isLargeScreen)
 const toggleSidebar = useToggle(showSidebar)
+
+const themeStore = useThemeStore()
+themeStore.initializeDarkMode()
+
 </script>
 
 <template>

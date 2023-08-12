@@ -1,7 +1,7 @@
 <template>
-  <div class="relative h-2 w-full overflow-hidden rounded-full bg-gray-200">
+  <div class="relative h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-slate-900">
     <div
-      class="progressbar h-full rounded-full"
+      class="progressbar h-full rounded-full bg-green-500 dark:bg-purple-700"
       role="progressbar"
       :style="progressBarStyle"
       :aria-valuenow="percentage"
@@ -27,8 +27,7 @@ export default {
   computed: {
     progressBarStyle() {
       return {
-        width: `${this.percentage}%`,
-        backgroundColor: `hsl(${Math.round(this.percentage * 1.2)},100%,50%)`
+        width: `${this.percentage}%`
       }
     }
   }

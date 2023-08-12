@@ -1,9 +1,8 @@
 <template lang="">
-  <div class="mt-8 flex items-center justify-center">
+  <div class="-mt-12 flex h-screen items-center justify-center">
     <div class="max-w-4xl overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800">
       <div class="mb-5 text-4xl font-light">{{ $t('introductionTitle') }}</div>
-      <p class="text-base">
-        {{ $t('introText') }}
+      <p class="text-base" v-html="$t('introText')">
       </p>
       <div class="flex justify-end">
         <router-link
