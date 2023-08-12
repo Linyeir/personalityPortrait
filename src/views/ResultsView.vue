@@ -10,13 +10,13 @@
         class="flex items-center gap-4"
       >
         <p class="w-1/4 text-right">
-          {{ $t('style' + category) }}
+          {{ $t('styles.' + category) }}
         </p>
         <div class="inline w-3/4">
           <progress-bar :percentage="(score * 100) / categories[category]" class="mx-2 mb-2" />
         </div>
         <p class="w-1/4">
-          {{ $t('disorder' + category) }}
+          {{ $t('disorders.' + category) }}
         </p>
       </div>
     </div>

@@ -2,7 +2,7 @@
   <div
     class="absolute inset-y-0 flex w-2/3 flex-col bg-white drop-shadow-lg dark:bg-slate-800 md:w-96 lg:relative lg:w-64 lg:-translate-x-0"
   >
-    <h1 class="m-5 text-xl">{{ $t('title') }}</h1>
+    <h1 class="m-5 text-xl">{{ $t('texts.title') }}</h1>
 
     <nav class="flex flex-1 flex-col p-2">
       <router-link
@@ -10,21 +10,21 @@
         class="my-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
         active-class="bg-slate-100 dark:bg-slate-700"
       >
-        <i class="bi bi-house-door-fill px-3"></i>{{ $t('introductionTitle') }}</router-link
+        <i class="bi bi-house-door-fill px-3"></i>{{ $t('texts.introductionTitle') }}</router-link
       >
       <router-link
         to="/quiz"
         active-class="bg-slate-100 dark:bg-slate-700"
         class="my-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
       >
-        <i class="bi bi-chat-left-dots-fill px-3"></i>{{ $t('quizTitle') }}</router-link
+        <i class="bi bi-chat-left-dots-fill px-3"></i>{{ $t('texts.quizTitle') }}</router-link
       >
       <router-link
         to="/results"
         active-class="bg-slate-100 dark:bg-slate-700"
         class="my-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
       >
-        <i class="bi bi-bar-chart-fill px-3"></i>{{ $t('resultsTitle') }}</router-link
+        <i class="bi bi-bar-chart-fill px-3"></i>{{ $t('texts.resultsTitle') }}</router-link
       >
       <button
         @click="themeStore.toggleDarkMode()"
@@ -60,7 +60,7 @@
         href="https://github.com/Linyeir/personalityPortrait"
         active-class="bg-slate-100 dark:bg-slate-700"
         class="mb-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
-        ><i class="bi bi-info-circle px-3"></i>{{ $t('infoTitle') }}</a
+        ><i class="bi bi-info-circle px-3"></i>{{ $t('texts.infoTitle') }}</a
       >
     </nav>
   </div>

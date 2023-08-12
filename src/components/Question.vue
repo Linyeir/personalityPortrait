@@ -1,24 +1,24 @@
 <template>
   <div>
-    <h2 class="">{{ $t(questionKey) }}</h2>
+    <h2 class="">{{ $t('questions.' + questionKey) }}</h2>
     <div class="mt-8 flex w-full flex-row justify-center gap-4">
       <button
         @click="selectAnswer(0)"
         class="basis-1/4 items-center rounded-md bg-slate-100 p-2 transition duration-200 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-900"
       >
-        {{ $t('answerYes') }}
+        {{ $t('texts.answerYes') }}
       </button>
       <button
         @click="selectAnswer(1)"
         class="basis-1/4 items-center rounded-md bg-slate-100 p-2 transition duration-200 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-900"
       >
-        {{ $t('answerMaybe') }}
+        {{ $t('texts.answerMaybe') }}
       </button>
       <button
         @click="selectAnswer(2)"
         class="basis-1/4 items-center rounded-md bg-slate-100 p-2 transition duration-200 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-900"
       >
-        {{ $t('answerNo') }}
+        {{ $t('texts.answerNo') }}
       </button>
     </div>
   </div>

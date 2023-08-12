@@ -1,7 +1,7 @@
 <template lang="">
-  <div class="-mt-12 flex h-screen flex-col items-center justify-center gap-4">
-    <div class="h-80 w-3/4 max-w-4xl">
-      <div class="overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800">
+  <div class="-mt-12 flex h-screen flex-col items-center justify-center gap-8">
+    <div class="h-96 w-3/4 max-w-4xl justify-self-end flex">
+      <div class="overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800 self-end w-full">
         <Question
           v-if="currentQuestionKey"
           :questionKey="currentQuestionKey"
@@ -13,7 +13,7 @@
             active-class="bg-slate-100 dark:bg-slate-700"
             class="my-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
           >
-            <i class="bi bi-check px-3"></i>{{ $t('submitQuiz') }}</router-link
+            <i class="bi bi-check px-3"></i>{{ $t('texts.submitQuiz') }}</router-link
           >
         </div>
       </div>
@@ -49,6 +49,7 @@ export default defineComponent({
     const totalQuestions = computed(() => quizStore.totalQuestions)
 
     const currentQuestionIndex = ref(0)
+    console.log(quizStore.questions)
 
     const currentQuestionKey = ref<string | null>(questionKeys.value[currentQuestionIndex.value])
 

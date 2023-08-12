@@ -23,7 +23,7 @@ themeStore.initializeDarkMode()
 
     <div class="m-6 flex-1">
       <header class="mb-6 flex border-b-4" v-if="!isLargeScreen">
-        <h1 class="inline text-xl">{{ $t('title') }}</h1>
+        <h1 class="inline text-xl">{{ $t('texts.title') }}</h1>
         <button @click="toggleSidebar()" class="ml-auto">
           <i
             class="bi px-3 text-xl"
