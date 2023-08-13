@@ -1,6 +1,8 @@
 <template lang="">
   <div class="algin center flex h-screen flex-col items-center justify-center">
     <div
+      id="results"
+      ref="appRef"
       class="w-full max-w-4xl overflow-hidden rounded-xl bg-white p-14 shadow-lg dark:bg-slate-800"
     >
       <div v-if="hashValue">
@@ -23,7 +25,7 @@
       <div v-else>
         <h2 class="mb-4 text-lg">{{ $t('texts.resultsHeading') }}</h2>
         <personality-results />
-        <div class="w-100 mt-8 flex h-8 justify-end">
+        <div class="w-100 mt-8 flex h-8 justify-end" v-show="!screenshotMode">
           <div v-if="isSupported">
             <button
               @click="copyHash()"
@@ -54,11 +56,12 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref, nextTick } from 'vue'
 import { useClipboard, usePermission } from '@vueuse/core'
 import { useRoute } from 'vue-router'
 import { useQuizStore } from '../stores/QuizStore'
 import PersonalityResults from '../components/PersonalityResults.vue'
+import { domToPng } from 'modern-screenshot'
 
 type Scores = {
   [key: string]: number
@@ -93,6 +96,7 @@ export default defineComponent({
     const hashValue = route.params.hash as string
     let isHashCorrect = /^[0-9a-h]{14}$/.test(hashValue)
     const quizStore = useQuizStore()
+    const scores = computed(() => quizStore.scores)
 
     const decompressedHashScores = decompress(hashValue, quizStore.categories)
 
@@ -102,13 +106,37 @@ export default defineComponent({
       usePermission('clipboard-write')
       copy('https://linyeir.github.com/personalityPortrait/#/results/' + compress(quizStore.scores))
     }
-    const scores = computed(() => quizStore.scores)
+
+    const appRef = ref(null)
+    const screenshotMode = ref(false)
+    async function saveImage() {
+      screenshotMode.value = true
+      await nextTick()
+      await new Promise((resolve) => setTimeout(resolve, 100))
+      if (appRef.value) {
+        console.log('if')
+        domToPng(appRef.value).then((dataUrl) => {
+          const link = document.createElement('a')
+          link.download = 'personalityPortrait.png'
+          link.href = dataUrl
+          link.click()
+        })
+        await nextTick()
+        await new Promise((resolve) => setTimeout(resolve, 100))
+        screenshotMode.value = false
+      } else {
+        screenshotMode.value = false
+      }
+    }
 
     return {
       scores,
       hashValue,
       isHashCorrect,
       copyHash,
+      appRef,
+      screenshotMode,
+      saveImage,
       isSupported,
       decompressedHashScores,
       copied

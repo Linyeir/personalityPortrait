@@ -44,7 +44,6 @@ export default defineComponent({
   },
   setup() {
     const quizStore = useQuizStore()
-    console.log('personality results')
     onMounted(() => {
       quizStore.calculateCategoryScores()
     })
