@@ -1,7 +1,9 @@
 <template lang="">
-  <div class="-mt-12 flex h-screen flex-col items-center justify-center gap-8">
-    <div class="h-96 w-3/4 max-w-4xl justify-self-end flex">
-      <div class="overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800 self-end w-full">
+  <div class="flex h-screen flex-col items-center justify-center gap-8">
+    <div class="flex h-96 w-3/4 max-w-4xl justify-self-end">
+      <div
+        class="w-full self-end overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800"
+      >
         <Question
           v-if="currentQuestionKey"
           :questionKey="currentQuestionKey"

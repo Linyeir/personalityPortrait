@@ -27,7 +27,7 @@ const i18n = createI18n({
 const routes = [
   { path: '/', component: IntroView },
   { path: '/quiz', component: QuizView },
-  { path: '/results', component: ResultsView}
+  { path: '/results/:hash?', component: ResultsView }
 ]
 
 const router = createRouter({

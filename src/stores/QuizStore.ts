@@ -5,15 +5,11 @@ type Question = {
   [key: string]: { [key: string]: number[] }
 }
 
-type Map = {
-  [key: string]: number
-}
-
 interface QuizState {
   questions: Question
-  categories: Map
-  answers: Map
-  scores: Map
+  categories: Dictionary
+  answers: Dictionary
+  scores: Dictionary
 }
 
 export const useQuizStore = defineStore('quiz', {
@@ -47,5 +43,5 @@ export const useQuizStore = defineStore('quiz', {
       }
     }
   },
-  persist: true,
+  persist: true
 })

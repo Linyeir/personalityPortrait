@@ -10,7 +10,14 @@
     "submitQuiz": "Ergebnis anzeigen",
     "answerYes": "Ja",
     "answerMaybe": "Vielleicht",
-    "answerNo": "Nein"
+    "answerNo": "Nein",
+    "shareHeading": "Geteiltes Persönlichkeits-Portrait",
+    "shareError": "Es gab leider einen fehler mit dem Link der mit dir geteilt wurde",
+    "shareCTA": "Mach das Quiz!",
+    "resultsHeading": "Dein Persönlichkeits-Portrait",
+    "shareButton": "Link teilen",
+    "shareSuccessful": "Link kopiert!",
+    "downloadButton": "Ergebnis herunterladen"
   },
   "styles": {
     "Vigilant": "Wachsam",

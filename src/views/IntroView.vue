@@ -1,9 +1,8 @@
 <template lang="">
-  <div class="-mt-12 flex h-screen items-center justify-center">
+  <div class="flex h-screen items-center justify-center">
     <div class="max-w-4xl overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800">
       <div class="mb-5 text-4xl font-light">{{ $t('texts.introductionTitle') }}</div>
-      <p class="text-base" v-html="$t('texts.introText')">
-      </p>
+      <p class="text-base" v-html="$t('texts.introText')"></p>
       <div class="flex justify-end">
         <router-link
           to="/quiz"

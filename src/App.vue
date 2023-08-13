@@ -12,16 +12,15 @@ const toggleSidebar = useToggle(showSidebar)
 
 const themeStore = useThemeStore()
 themeStore.initializeDarkMode()
-
 </script>
 
 <template>
-  <div class="relative flex min-h-screen bg-slate-50 dark:bg-slate-700 dark:text-white">
+  <div class="relative flex h-screen bg-slate-50 dark:bg-slate-700 dark:text-white">
     <Transition name="slide-fade">
       <sidebarMenu v-if="showSidebar" />
     </Transition>
 
-    <div class="m-6 flex-1">
+    <div class="flex-1">
       <header class="mb-6 flex border-b-4" v-if="!isLargeScreen">
         <h1 class="inline text-xl">{{ $t('texts.title') }}</h1>
         <button @click="toggleSidebar()" class="ml-auto">

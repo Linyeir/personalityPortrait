@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    class="absolute inset-y-0 flex w-2/3 flex-col bg-white drop-shadow-lg dark:bg-slate-800 md:w-96 lg:relative lg:w-64 lg:-translate-x-0"
+    class="absolute inset-y-0 z-10 flex w-2/3 flex-col bg-white drop-shadow-lg dark:bg-slate-800 md:w-96 lg:relative lg:w-64 lg:-translate-x-0"
   >
     <h1 class="m-5 text-xl">{{ $t('texts.title') }}</h1>
 
@@ -45,14 +45,18 @@
       >
         <i class="bi bi-globe px-2"></i>
 
-        <select v-model="$i18n.locale" class="w-3/4 appearance-none bg-transparent" aria-label="Select Language">
+        <select
+          v-model="$i18n.locale"
+          class="ml-1 w-3/4 appearance-none bg-transparent"
+          aria-label="Select Language"
+        >
           <option
             v-for="locale in $i18n.availableLocales"
             :key="`locale-${locale}`"
             :value="locale"
             class="p-3 dark:bg-slate-800 dark:hover:bg-slate-900"
           >
-            <span class="pl-4">{{ getLanguageName(locale) }}</span>
+            <span class="">{{ getLanguageName(locale) }}</span>
           </option>
         </select>
       </div>
