@@ -4,12 +4,12 @@
       <div
         class="w-full self-end overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800"
       >
-        <Question
+        <question-display
           v-if="currentQuestionKey"
           :questionKey="currentQuestionKey"
           @update="storeAnswerAndGoToNext"
         />
-        <div v-if="allQuestionsAnswered">
+        <div v-else>
           <router-link
             to="/results"
             active-class="bg-slate-100 dark:bg-slate-700"
@@ -29,7 +29,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { useQuizStore } from '../stores/QuizStore'
-import Question from '../components/Question.vue'
+import QuestionDisplay from '../components/QuestionDisplay.vue'
 import ProgressBar from '../components/ProgressBar.vue'
 
 interface UpdateEvent {
@@ -41,36 +41,24 @@ export default defineComponent({
   // type inference enabled
   name: 'QuizView',
   components: {
-    Question,
+    QuestionDisplay,
     ProgressBar
   },
   setup() {
     const quizStore = useQuizStore() // **2. Use the Pinia Store**
-    const questionKeys = ref(Object.keys(quizStore.questions)) // **Use questions from the store**
     const answersSum = computed(() => quizStore.sumOfAnswers)
     const totalQuestions = computed(() => quizStore.totalQuestions)
-
-    const currentQuestionIndex = ref(0)
-    console.log(quizStore.questions)
-
-    const currentQuestionKey = ref<string | null>(questionKeys.value[currentQuestionIndex.value])
+    const currentQuestionKey = ref<string | null>(quizStore.firstUnansweredQuestionKey)
 
     const storeAnswerAndGoToNext = ({ questionKey, answer }: UpdateEvent) => {
-      quizStore.answers[questionKey] = answer // **Update answers in the store**
-      currentQuestionIndex.value += 1
-
-      if (currentQuestionIndex.value < totalQuestions.value) {
-        currentQuestionKey.value = questionKeys.value[currentQuestionIndex.value]
-      } else {
-        currentQuestionKey.value = null
-      }
+      quizStore.answers[questionKey] = answer
+      currentQuestionKey.value = quizStore.firstUnansweredQuestionKey // Set to the next unanswered question
     }
 
     return {
       currentQuestionKey,
       answersSum,
       totalQuestions,
-      allQuestionsAnswered: computed(() => currentQuestionKey.value === null),
       storeAnswerAndGoToNext
     }
   }

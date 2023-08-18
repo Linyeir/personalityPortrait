@@ -28,7 +28,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'QuestionComponent',
+  name: 'QuestionDisplay',
   props: {
     questionKey: {
       type: String,

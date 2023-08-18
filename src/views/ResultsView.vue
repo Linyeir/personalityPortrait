@@ -3,7 +3,7 @@
     <div
       id="results"
       ref="appRef"
-      class="w-full max-w-4xl overflow-hidden rounded-xl bg-white p-14 shadow-lg dark:bg-slate-800"
+      class="mx-5 w-5/6 max-w-4xl overflow-hidden rounded-xl bg-white p-14 shadow-lg dark:bg-slate-800"
     >
       <div v-if="hashValue">
         <h2 class="text-lg">{{ $t('texts.shareHeading') }}</h2>

@@ -1,17 +1,48 @@
-<script setup lang="ts">
+<script lang="ts">
+import { onMounted, onUnmounted, computed, ref, defineComponent } from 'vue'
 import sidebarMenu from './components/SidebarMenu.vue'
 import { useThemeStore } from './stores/ThemeStore'
 
-import { useToggle } from '@vueuse/core'
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import { ref } from 'vue'
+import {} from 'vue'
 
-const isLargeScreen = window.innerWidth >= 1024
-const showSidebar = ref(isLargeScreen)
-const toggleSidebar = useToggle(showSidebar)
+export default defineComponent({
+  components: {
+    sidebarMenu
+  },
+  setup() {
+    const screenWidth = ref(window.innerWidth)
+    const isLargeScreen = computed(() => screenWidth.value >= 1024)
+    const showSidebar = ref(isLargeScreen.value)
 
-const themeStore = useThemeStore()
-themeStore.initializeDarkMode()
+    const themeStore = useThemeStore()
+    themeStore.initializeDarkMode()
+
+    onMounted(() => {
+      window.addEventListener('resize', handleResize)
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', handleResize)
+    })
+
+    function handleResize() {
+      screenWidth.value = window.innerWidth
+
+      showSidebar.value = isLargeScreen.value
+    }
+
+    function toggleSidebar() {
+      showSidebar.value = !showSidebar.value
+    }
+
+    return {
+      showSidebar,
+      isLargeScreen,
+      toggleSidebar
+    }
+  }
+})
 </script>
 
 <template>
@@ -21,7 +52,7 @@ themeStore.initializeDarkMode()
     </Transition>
 
     <div class="flex-1">
-      <header class="mb-6 flex border-b-4" v-if="!isLargeScreen">
+      <header class="my-2 flex border-b-4 p-2" v-if="!isLargeScreen">
         <h1 class="inline text-xl">{{ $t('texts.title') }}</h1>
         <button @click="toggleSidebar()" class="ml-auto">
           <i

@@ -21,11 +21,15 @@
       >
       <router-link
         to="/results"
+        v-if="allQuestionsAnswered"
         active-class="bg-slate-100 dark:bg-slate-700"
         class="my-1 items-center rounded-md p-2 transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
       >
         <i class="bi bi-bar-chart-fill px-3"></i>{{ $t('texts.resultsTitle') }}</router-link
       >
+      <span v-else class="disabled-link my-1 items-center rounded-md p-2 text-gray-500">
+        <i class="bi bi-bar-chart-fill px-3"></i>{{ $t('texts.resultsTitle') }}
+      </span>
       <button
         @click="themeStore.toggleDarkMode()"
         class="my-1 mt-auto rounded bg-green-500 px-3 py-2 text-left dark:bg-purple-700"
@@ -73,11 +77,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useThemeStore } from '../stores/ThemeStore'
+import { useQuizStore } from '../stores/QuizStore'
 
 export default defineComponent({
   components: {},
   setup() {
     const themeStore = useThemeStore()
+    const quizStore = useQuizStore()
+    const allQuestionsAnswered = !quizStore.firstUnansweredQuestionKey
 
     function getLanguageName(locale: string): string | undefined {
       const languages = new Map<string, string>([
@@ -89,7 +96,8 @@ export default defineComponent({
 
     return {
       themeStore,
-      getLanguageName
+      getLanguageName,
+      allQuestionsAnswered
     }
   }
 })
