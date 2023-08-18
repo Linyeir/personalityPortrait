@@ -6,20 +6,26 @@
     <div
       v-for="(score, category) in resolvedScores"
       :key="category"
-      class="flex items-center gap-4"
+      class="my-3 grid grid-cols-2 grid-rows-2 gap-1 md:my-1 md:grid-cols-3 md:grid-rows-1 md:gap-4"
     >
-      <p class="w-1/4 text-right">
+      <!-- Left (Normal) Label -->
+      <p class="order-1 col-span-1 text-left md:text-right">
         {{ $t('styles.' + category) }}
       </p>
-      <div class="inline w-3/4">
+
+      <!-- Progress Bar (takes 2 fractions) -->
+      <div class="order-3 col-span-2 md:col-span-1 md:self-center">
         <progress-bar :percentage="(score * 100) / categories[category]" class="mx-2 mb-2" />
       </div>
-      <p class="w-1/4">
+
+      <!-- Right (Extreme) Label -->
+      <p class="order-2 col-span-1 text-right md:order-last md:col-span-1 md:text-left">
         {{ $t('disorders.' + category) }}
       </p>
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue'
 import ProgressBar from '../components/ProgressBar.vue'

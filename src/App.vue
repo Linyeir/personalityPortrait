@@ -1,10 +1,10 @@
 <script lang="ts">
-import { onMounted, onUnmounted, computed, ref, defineComponent } from 'vue'
+import { onMounted, onUnmounted, computed, ref, defineComponent, watch } from 'vue'
 import sidebarMenu from './components/SidebarMenu.vue'
 import { useThemeStore } from './stores/ThemeStore'
+import { useRoute } from 'vue-router'
 
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import {} from 'vue'
 
 export default defineComponent({
   components: {
@@ -35,6 +35,14 @@ export default defineComponent({
     function toggleSidebar() {
       showSidebar.value = !showSidebar.value
     }
+    const route = useRoute()
+
+    // Close the sidebar on route change
+    watch(route, () => {
+      if (!isLargeScreen.value) {
+        showSidebar.value = false
+      }
+    })
 
     return {
       showSidebar,
@@ -47,11 +55,16 @@ export default defineComponent({
 
 <template>
   <div class="relative flex h-screen bg-slate-50 dark:bg-slate-700 dark:text-white">
+    <div
+      v-if="showSidebar && !isLargeScreen"
+      @click="toggleSidebar"
+      class="fixed z-10 h-full w-full bg-gray-400 opacity-50"
+    ></div>
     <Transition name="slide-fade">
       <sidebarMenu v-if="showSidebar" />
     </Transition>
 
-    <div class="flex-1">
+    <div class="flex-column h-full flex-1">
       <header class="my-2 flex border-b-4 p-2" v-if="!isLargeScreen">
         <h1 class="inline text-xl">{{ $t('texts.title') }}</h1>
         <button @click="toggleSidebar()" class="ml-auto">
@@ -62,7 +75,7 @@ export default defineComponent({
         </button>
       </header>
 
-      <router-view></router-view>
+      <router-view class=""></router-view>
     </div>
   </div>
 </template>
