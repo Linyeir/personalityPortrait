@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    class="absolute inset-y-0 z-10 flex w-2/3 flex-col bg-white drop-shadow-lg dark:bg-slate-800 md:w-96 lg:relative lg:w-64 lg:-translate-x-0"
+    class="absolute inset-y-0 z-10 flex h-screen w-2/3 flex-col bg-white drop-shadow-lg dark:bg-slate-800 md:w-96 lg:relative lg:w-64 lg:-translate-x-0"
   >
     <h1 class="m-5 text-xl">{{ $t('texts.title') }}</h1>
 

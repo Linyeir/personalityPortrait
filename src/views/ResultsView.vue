@@ -1,9 +1,9 @@
 <template lang="">
-  <div class="algin center flex h-screen flex-col items-center justify-center">
+  <div class="algin center flex flex-col items-center justify-center md:h-screen">
     <div
       id="results"
       ref="appRef"
-      class="mx-5 w-5/6 max-w-4xl overflow-hidden rounded-xl bg-white p-14 shadow-lg dark:bg-slate-800"
+      class="m-4 w-5/6 max-w-4xl overflow-hidden rounded-xl bg-white p-14 shadow-lg dark:bg-slate-800"
     >
       <div v-if="hashValue">
         <h2 class="text-lg">{{ $t('texts.shareHeading') }}</h2>
@@ -104,7 +104,7 @@ export default defineComponent({
 
     function copyHash() {
       usePermission('clipboard-write')
-      copy('https://linyeir.github.com/personalityPortrait/#/results/' + compress(quizStore.scores))
+      copy('https://linyeir.github.io/personalityPortrait/#/results/' + compress(quizStore.scores))
     }
 
     const appRef = ref(null)

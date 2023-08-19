@@ -1,6 +1,8 @@
 <template lang="">
-  <div class="flex my-8 items-center justify-center">
-    <div class="max-w-4xl overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800 mx-5">
+  <div class="my-8 flex items-center justify-center md:h-screen">
+    <div
+      class="mx-5 max-w-4xl overflow-hidden rounded-xl bg-white p-8 md:p-20 shadow-lg dark:bg-slate-800"
+    >
       <div class="mb-5 text-4xl font-light">{{ $t('texts.introductionTitle') }}</div>
       <p class="text-base" v-html="$t('texts.introText')"></p>
       <div class="flex justify-end">

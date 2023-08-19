@@ -54,7 +54,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="relative flex h-screen bg-slate-50 dark:bg-slate-700 dark:text-white">
+  <div class="relative flex min-h-screen bg-slate-50 dark:bg-slate-700 dark:text-white">
     <div
       v-if="showSidebar && !isLargeScreen"
       @click="toggleSidebar"

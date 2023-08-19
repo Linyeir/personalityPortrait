@@ -1,8 +1,8 @@
 <template lang="">
-  <div class="flex h-screen flex-col items-center justify-center gap-8">
+  <div class="flex md:h-screen flex-col items-center justify-center gap-8">
     <div class="flex h-96 w-3/4 max-w-4xl justify-self-end">
       <div
-        class="w-full self-end overflow-hidden rounded-xl bg-white p-20 shadow-lg dark:bg-slate-800"
+        class="w-full self-end overflow-hidden rounded-xl bg-white p-8 md:p-20 shadow-lg dark:bg-slate-800"
       >
         <question-display
           v-if="currentQuestionKey"
