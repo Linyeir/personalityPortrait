@@ -1,8 +1,8 @@
 <template lang="">
-  <div class="flex md:h-screen flex-col items-center justify-center gap-8">
-    <div class="flex h-96 w-3/4 max-w-4xl justify-self-end">
+  <div class="m-4 flex flex-col items-center justify-center gap-8 md:h-screen">
+    <div class="flex h-96 w-full max-w-4xl justify-self-end md:w-3/4">
       <div
-        class="w-full self-end overflow-hidden rounded-xl bg-white p-8 md:p-20 shadow-lg dark:bg-slate-800"
+        class="w-full self-end overflow-hidden rounded-xl bg-white p-8 shadow-lg dark:bg-slate-800 md:p-20"
       >
         <question-display
           v-if="currentQuestionKey"
@@ -21,8 +21,15 @@
       </div>
     </div>
 
-    <div class="mt-0 w-1/2">
-      <progress-bar :percentage="(answersSum * 100) / totalQuestions" class="mx-2 mb-2" />
+    <div class="mt-0 grid w-full grid-cols-4 grid-rows-1 gap-2 md:gap-4">
+      <button
+        @click="goToPreviousQuestion"
+        :disabled="isAtFirstQuestion"
+        class="rounded-md text-xs transition duration-200 hover:bg-slate-200 dark:hover:bg-slate-900"
+      >
+        <i class="bi bi-arrow-left px-3 text-xs"></i>{{ $t('texts.goBack') }}
+      </button>
+      <progress-bar :percentage="(answersSum * 100) / totalQuestions" />
     </div>
   </div>
 </template>
@@ -45,21 +52,39 @@ export default defineComponent({
     ProgressBar
   },
   setup() {
-    const quizStore = useQuizStore() // **2. Use the Pinia Store**
+    const quizStore = useQuizStore()
     const answersSum = computed(() => quizStore.sumOfAnswers)
     const totalQuestions = computed(() => quizStore.totalQuestions)
-    const currentQuestionKey = ref<string | null>(quizStore.firstUnansweredQuestionKey)
+    const questionKeys = computed(() => Object.keys(quizStore.questions))
 
+    const currentQuestionIndex = ref(quizStore.sumOfAnswers)
+    const currentQuestionKey = computed(
+      () => questionKeys.value[currentQuestionIndex.value] || null
+    )
+
+    // Method to navigate to the next question
     const storeAnswerAndGoToNext = ({ questionKey, answer }: UpdateEvent) => {
       quizStore.answers[questionKey] = answer
-      currentQuestionKey.value = quizStore.firstUnansweredQuestionKey // Set to the next unanswered question
+      currentQuestionIndex.value++
     }
+
+    // Method to navigate to previous question
+    const goToPreviousQuestion = () => {
+      if (currentQuestionIndex.value > 0) {
+        currentQuestionIndex.value--
+      }
+    }
+
+    // Determine if we are at the first question
+    const isAtFirstQuestion = computed(() => currentQuestionIndex.value === 0)
 
     return {
       currentQuestionKey,
       answersSum,
       totalQuestions,
-      storeAnswerAndGoToNext
+      storeAnswerAndGoToNext,
+      goToPreviousQuestion,
+      isAtFirstQuestion
     }
   }
 })

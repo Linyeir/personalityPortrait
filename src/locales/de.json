@@ -17,7 +17,8 @@
     "resultsHeading": "Dein Persönlichkeits-Portrait",
     "shareButton": "Link teilen",
     "shareSuccessful": "Link kopiert!",
-    "downloadButton": "Ergebnis herunterladen"
+    "downloadButton": "Ergebnis herunterladen",
+    "goBack": "Zurück"
   },
   "styles": {
     "Vigilant": "Wachsam",

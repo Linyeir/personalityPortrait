@@ -21,7 +21,8 @@
     "resultsHeading": "Your Personality Portrait",
     "shareButton": "Share Link",
     "shareSuccessful": "Link copied!",
-    "downloadButton": "Download Results"
+    "downloadButton": "Download Results",
+    "goBack": "Go Back"
   },
   "styles": {
     "Vigilant": "Vigilant",

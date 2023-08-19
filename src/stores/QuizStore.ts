@@ -25,11 +25,6 @@ export const useQuizStore = defineStore('quiz', {
     },
     totalQuestions(state): number {
       return Object.keys(state.questions).length
-    },
-    firstUnansweredQuestionKey(state): string | null {
-      const unansweredIndex = Object.keys(state.answers).length;
-      const questionKeys = Object.keys(state.questions);
-      return unansweredIndex < questionKeys.length ? questionKeys[unansweredIndex] : null;
     }
   },
   actions: {
