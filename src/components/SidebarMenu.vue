@@ -84,7 +84,7 @@ export default defineComponent({
   setup() {
     const themeStore = useThemeStore()
     const quizStore = useQuizStore()
-    const allQuestionsAnswered = !quizStore.firstUnansweredQuestionKey
+    const allQuestionsAnswered = quizStore.sumOfAnswers === quizStore.totalQuestions
 
     function getLanguageName(locale: string): string | undefined {
       const languages = new Map<string, string>([

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative col-span-2 z-0 h-2 w-full rounded-full bg-gray-200 dark:bg-slate-900">
+  <div class="relative z-0 col-span-2 h-2 w-full rounded-full bg-gray-200 dark:bg-slate-900">
     <div
       class="progressbar h-full rounded-full bg-green-500 dark:bg-purple-700"
       role="progressbar"
